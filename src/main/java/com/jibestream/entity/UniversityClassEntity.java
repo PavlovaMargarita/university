@@ -1,5 +1,7 @@
 package com.jibestream.entity;
 
+import com.sun.istack.internal.NotNull;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -23,6 +25,7 @@ public class UniversityClassEntity {
     private Long id;
 
     @Column(name = "name")
+    @NotNull
     private String name;
 
     @OneToMany(mappedBy = "universityClassEntity", cascade = { CascadeType.ALL}, orphanRemoval=true)

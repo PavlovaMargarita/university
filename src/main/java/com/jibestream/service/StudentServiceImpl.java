@@ -51,11 +51,12 @@ public class StudentServiceImpl implements StudentService {
 
     @Override
     public void updateStudent(Long id, StudentDto studentDto) {
-        verifyStudentExists(id);
+        StudentEntity existingStudentEntity = verifyStudentExists(id);
         StudentEntity studentEntity = aStudentEntity()
                 .withId(id)
                 .withFirstName(studentDto.getFirstName())
                 .withLastName(studentDto.getLastName())
+                .withClassGradeEntityList(existingStudentEntity.getClassStudentGradeEntityList())
                 .build();
         studentRepository.save(studentEntity);
     }

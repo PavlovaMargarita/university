@@ -1,5 +1,7 @@
 package com.jibestream.entity;
 
+import com.sun.istack.internal.NotNull;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -24,6 +26,7 @@ public class ClassStudentGradeEntity {
     private StudentEntity studentEntity;
 
     @Column(name = "grade")
+    @NotNull
     private int grade;
 
     public ClassStudentGradeEntity() {

@@ -38,10 +38,11 @@ public class UniversityClassServiceImpl implements UniversityClassService {
 
     @Override
     public void updateClass(Long classId, UniversityClassDto universityClassDto) {
-        verifyClassExists(classId);
+        UniversityClassEntity existingClassEntity = verifyClassExists(classId);
         final UniversityClassEntity universityClassEntity = aUniversityClassEntity()
                 .withId(classId)
                 .withName(universityClassDto.getName())
+                .withClassGradeEntityList(existingClassEntity.getClassStudentGradeEntityList())
                 .build();
 
         universityClassRepository.save(universityClassEntity);
