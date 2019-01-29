@@ -9,21 +9,29 @@ import static org.apache.commons.lang3.builder.EqualsBuilder.reflectionEquals;
 import static org.apache.commons.lang3.builder.HashCodeBuilder.reflectionHashCode;
 import static org.apache.commons.lang3.builder.ToStringBuilder.reflectionToString;
 
-@JsonDeserialize(builder = UniversityClassDto.Builder.class)
-public class UniversityClassDto {
+@JsonDeserialize(builder = ClassStudentGradeDto.Builder.class)
+public class ClassStudentGradeDto {
     @NotNull
-    private String name;
+    private long studentId;
 
-    private UniversityClassDto(Builder builder) {
-        name = builder.name;
+    @NotNull
+    private int grade;
+
+    private ClassStudentGradeDto(Builder builder) {
+        studentId = builder.studentId;
+        grade = builder.grade;
     }
 
-    public static Builder aUniversityClassDto() {
+    public static Builder aClassStudentGradeDto() {
         return new Builder();
     }
 
-    public String getName() {
-        return name;
+    public long getStudentId() {
+        return studentId;
+    }
+
+    public int getGrade() {
+        return grade;
     }
 
     @Override
@@ -43,18 +51,24 @@ public class UniversityClassDto {
 
     @JsonPOJOBuilder
     public static final class Builder {
-        private String name;
+        private long studentId;
+        private int grade;
 
         private Builder() {
         }
 
-        public Builder withName(String name) {
-            this.name = name;
+        public Builder withStudentId(long studentId) {
+            this.studentId = studentId;
             return this;
         }
 
-        public UniversityClassDto build() {
-            return new UniversityClassDto(this);
+        public Builder withGrade(int grade) {
+            this.grade = grade;
+            return this;
+        }
+
+        public ClassStudentGradeDto build() {
+            return new ClassStudentGradeDto(this);
         }
     }
 }

@@ -3,13 +3,18 @@ package com.jibestream.dto;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonPOJOBuilder;
 
+import javax.validation.constraints.NotNull;
+
 import static org.apache.commons.lang3.builder.EqualsBuilder.reflectionEquals;
 import static org.apache.commons.lang3.builder.HashCodeBuilder.reflectionHashCode;
 import static org.apache.commons.lang3.builder.ToStringBuilder.reflectionToString;
 
 @JsonDeserialize(builder = StudentDto.Builder.class)
 public class StudentDto {
+    @NotNull
     private String firstName;
+
+    @NotNull
     private String lastName;
 
     private StudentDto(Builder builder) {
@@ -17,7 +22,7 @@ public class StudentDto {
         lastName = builder.lastName;
     }
 
-    public static Builder newBuilder() {
+    public static Builder aStudentDto() {
         return new Builder();
     }
 

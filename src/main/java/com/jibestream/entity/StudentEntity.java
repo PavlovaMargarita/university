@@ -27,7 +27,7 @@ public class StudentEntity {
     @Column(name = "last_name")
     private String lastName;
 
-    @OneToMany(mappedBy = "universityClassEntity", cascade = { CascadeType.ALL}, orphanRemoval=true)
+    @OneToMany(mappedBy = "studentEntity", cascade = { CascadeType.ALL}, orphanRemoval=true)
     private List<ClassStudentGradeEntity> classStudentGradeEntityList;
 
     public StudentEntity() {
@@ -41,7 +41,7 @@ public class StudentEntity {
         classStudentGradeEntityList = builder.classStudentGradeEntityList;
     }
 
-    public static Builder newBuilder() {
+    public static Builder aStudentEntity() {
         return new Builder();
     }
 

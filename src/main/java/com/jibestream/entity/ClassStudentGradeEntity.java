@@ -36,7 +36,7 @@ public class ClassStudentGradeEntity {
         grade = builder.grade;
     }
 
-    public static Builder newBuilder() {
+    public static Builder aClassStudentGradeEntity() {
         return new Builder();
     }
 

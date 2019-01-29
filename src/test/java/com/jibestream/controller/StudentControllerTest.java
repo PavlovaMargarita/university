@@ -1,5 +1,6 @@
 package com.jibestream.controller;
 
+import com.jibestream.dto.StudentClassGradeDto;
 import com.jibestream.dto.StudentDto;
 import com.jibestream.service.StudentService;
 import org.apache.commons.io.IOUtils;
@@ -16,19 +17,29 @@ import org.springframework.test.web.servlet.MockMvc;
 import java.io.IOException;
 import java.io.UncheckedIOException;
 
+import static com.jibestream.dto.StudentDto.aStudentDto;
 import static java.nio.charset.StandardCharsets.UTF_8;
+import static java.util.Arrays.asList;
+import static org.mockito.Matchers.eq;
 import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 import static org.springframework.http.MediaType.APPLICATION_JSON;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @RunWith(SpringRunner.class)
 @WebMvcTest(controllers = { StudentController.class })
 @EnableSpringDataWebSupport
 public class StudentControllerTest {
-    private String PATH_CREATE_STUDENT_JSON = "payload/student/student.json";
+    private final String PATH_STUDENT_JSON = "payload/student/student.json";
+    private final String PATH_STUDENT_CLASSES_JSON = "payload/student/student_classes.json";
+    private final StudentDto TEST_EXPECTED_STUDENT = aStudentDto().withFirstName("John").withLastName("Smith").build();
+    private final Long TEST_STUDENT_ID = 3L;
+
     @Autowired
     private MockMvc mockMvc;
 
@@ -39,39 +50,52 @@ public class StudentControllerTest {
     public void shouldStoreStudent() throws Exception {
         mockMvc.perform(post("/student")
                 .contentType(APPLICATION_JSON)
-                .content(readFromFile(PATH_CREATE_STUDENT_JSON)))
+                .content(readFromFile(PATH_STUDENT_JSON)))
                 .andExpect(status().isOk());
 
-        verify(studentService).createStudent(StudentDto.newBuilder().withFirstName("John").withLastName("Smith").build());
+        verify(studentService).createStudent(TEST_EXPECTED_STUDENT);
     }
 
     @Test
     public void shouldUpdateStudent() throws Exception {
-        mockMvc.perform(put("/student/{id}", 3)
+        mockMvc.perform(put("/student/{id}", TEST_STUDENT_ID)
                 .contentType(APPLICATION_JSON)
-                .content(readFromFile(PATH_CREATE_STUDENT_JSON)))
+                .content(readFromFile(PATH_STUDENT_JSON)))
                 .andExpect(status().isOk());
 
-        verify(studentService).updateStudent(3L, StudentDto.newBuilder().withFirstName("John").withLastName("Smith")
-                .build());
+        verify(studentService).updateStudent(TEST_STUDENT_ID, TEST_EXPECTED_STUDENT);
     }
 
     @Test
     public void shouldDeleteStudent() throws Exception {
-        mockMvc.perform(delete("/student/{id}", 3)
+        mockMvc.perform(delete("/student/{id}", TEST_STUDENT_ID)
                 .contentType(APPLICATION_JSON))
                 .andExpect(status().isOk());
 
-        verify(studentService).deleteStudent(3L);
+        verify(studentService).deleteStudent(TEST_STUDENT_ID);
     }
 
     @Test
-    public void shouldAssignClassToStudent() throws Exception {
-        mockMvc.perform(delete("/student/assignclass", 3)
-                .contentType(APPLICATION_JSON))
-                .andExpect(status().isOk());
+    public void shouldGetStudentClasses() throws Exception {
+        StudentClassGradeDto computerScienceClass = StudentClassGradeDto.aStudentClassGradeDto()
+                .withClassName("Computer Science")
+                .withGrade(8)
+                .build();
 
-        verify(studentService).deleteStudent(3L);
+        StudentClassGradeDto philosophyClass = StudentClassGradeDto.aStudentClassGradeDto()
+                .withClassName("Philosophy")
+                .withGrade(9)
+                .build();
+
+        when(studentService.getStudentClasses(eq(TEST_STUDENT_ID))).thenReturn(
+                asList(computerScienceClass, philosophyClass));
+
+        mockMvc.perform(get("/student/{id}/classes", TEST_STUDENT_ID)
+                .contentType(APPLICATION_JSON))
+                .andExpect(status().isOk())
+                .andExpect(content().json(readFromFile(PATH_STUDENT_CLASSES_JSON)));
+
+        verify(studentService).getStudentClasses(TEST_STUDENT_ID);
     }
 
     private String readFromFile(final String filename) {

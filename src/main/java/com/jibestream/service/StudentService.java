@@ -1,19 +1,17 @@
 package com.jibestream.service;
 
-import com.jibestream.dto.StudentGradeDto;
+import com.jibestream.dto.StudentClassGradeDto;
 import com.jibestream.dto.StudentDto;
+
+import java.util.List;
 
 public interface StudentService {
 
-    void getStudent(Long studentId);
+    List<StudentClassGradeDto> getStudentClasses(Long studentId);
 
     void createStudent(StudentDto studentDto);
 
     void updateStudent(Long id, StudentDto studentDto);
 
     void deleteStudent(Long id);
-
-    void assignStudentToClass(StudentGradeDto studentGradeDto);
-
-    void unassignStudentFromClass(StudentGradeDto studentGradeDto);
 }
