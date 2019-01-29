@@ -1,7 +1,7 @@
-package com.jibestream.service;
+package com.pavlova.service;
 
-import com.jibestream.dto.ClassStudentGradeDto;
-import com.jibestream.dto.UniversityClassDto;
+import com.pavlova.dto.ClassStudentGradeDto;
+import com.pavlova.dto.UniversityClassDto;
 
 public interface UniversityClassService {
 

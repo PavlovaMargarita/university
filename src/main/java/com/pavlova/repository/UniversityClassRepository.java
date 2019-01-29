@@ -1,6 +1,6 @@
-package com.jibestream.repository;
+package com.pavlova.repository;
 
-import com.jibestream.entity.UniversityClassEntity;
+import com.pavlova.entity.UniversityClassEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

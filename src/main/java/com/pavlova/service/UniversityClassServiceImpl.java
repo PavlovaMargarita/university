@@ -1,18 +1,18 @@
-package com.jibestream.service;
+package com.pavlova.service;
 
-import com.jibestream.dto.ClassStudentGradeDto;
-import com.jibestream.dto.UniversityClassDto;
-import com.jibestream.entity.ClassStudentGradeEntity;
-import com.jibestream.entity.StudentEntity;
-import com.jibestream.entity.UniversityClassEntity;
-import com.jibestream.repository.StudentRepository;
-import com.jibestream.repository.UniversityClassRepository;
+import com.pavlova.dto.ClassStudentGradeDto;
+import com.pavlova.dto.UniversityClassDto;
+import com.pavlova.entity.ClassStudentGradeEntity;
+import com.pavlova.entity.StudentEntity;
+import com.pavlova.entity.UniversityClassEntity;
+import com.pavlova.repository.StudentRepository;
+import com.pavlova.repository.UniversityClassRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-import static com.jibestream.entity.UniversityClassEntity.aUniversityClassEntity;
+import static com.pavlova.entity.UniversityClassEntity.aUniversityClassEntity;
 
 @Service
 public class UniversityClassServiceImpl implements UniversityClassService {

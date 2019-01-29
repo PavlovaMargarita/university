@@ -1,8 +1,8 @@
-package com.jibestream.controller;
+package com.pavlova.controller;
 
-import com.jibestream.dto.StudentClassGradeDto;
-import com.jibestream.dto.StudentDto;
-import com.jibestream.service.StudentService;
+import com.pavlova.dto.StudentClassGradeDto;
+import com.pavlova.dto.StudentDto;
+import com.pavlova.service.StudentService;
 import org.apache.commons.io.IOUtils;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -17,7 +17,7 @@ import org.springframework.test.web.servlet.MockMvc;
 import java.io.IOException;
 import java.io.UncheckedIOException;
 
-import static com.jibestream.dto.StudentDto.aStudentDto;
+import static com.pavlova.dto.StudentDto.aStudentDto;
 import static java.nio.charset.StandardCharsets.UTF_8;
 import static java.util.Arrays.asList;
 import static org.mockito.Matchers.eq;

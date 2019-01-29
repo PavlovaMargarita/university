@@ -1,4 +1,4 @@
-package com.jibestream.entity;
+package com.pavlova.entity;
 
 import com.sun.istack.internal.NotNull;
 

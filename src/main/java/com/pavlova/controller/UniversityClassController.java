@@ -1,8 +1,8 @@
-package com.jibestream.controller;
+package com.pavlova.controller;
 
-import com.jibestream.dto.ClassStudentGradeDto;
-import com.jibestream.dto.UniversityClassDto;
-import com.jibestream.service.UniversityClassService;
+import com.pavlova.dto.ClassStudentGradeDto;
+import com.pavlova.dto.UniversityClassDto;
+import com.pavlova.service.UniversityClassService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PathVariable;

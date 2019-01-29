@@ -1,11 +1,11 @@
-package com.jibestream.service;
+package com.pavlova.service;
 
-import com.jibestream.dto.StudentClassGradeDto;
-import com.jibestream.dto.StudentDto;
-import com.jibestream.entity.ClassStudentGradeEntity;
-import com.jibestream.entity.StudentEntity;
-import com.jibestream.entity.UniversityClassEntity;
-import com.jibestream.repository.StudentRepository;
+import com.pavlova.dto.StudentClassGradeDto;
+import com.pavlova.dto.StudentDto;
+import com.pavlova.entity.ClassStudentGradeEntity;
+import com.pavlova.entity.StudentEntity;
+import com.pavlova.entity.UniversityClassEntity;
+import com.pavlova.repository.StudentRepository;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
@@ -14,8 +14,8 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.List;
 
-import static com.jibestream.dto.StudentDto.aStudentDto;
-import static com.jibestream.entity.StudentEntity.aStudentEntity;
+import static com.pavlova.dto.StudentDto.aStudentDto;
+import static com.pavlova.entity.StudentEntity.aStudentEntity;
 import static java.util.Arrays.asList;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;

@@ -1,4 +1,4 @@
-package com.jibestream.dto;
+package com.pavlova.dto;
 
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonPOJOBuilder;
@@ -9,29 +9,29 @@ import static org.apache.commons.lang3.builder.EqualsBuilder.reflectionEquals;
 import static org.apache.commons.lang3.builder.HashCodeBuilder.reflectionHashCode;
 import static org.apache.commons.lang3.builder.ToStringBuilder.reflectionToString;
 
-@JsonDeserialize(builder = StudentDto.Builder.class)
-public class StudentDto {
+@JsonDeserialize(builder = ClassStudentGradeDto.Builder.class)
+public class ClassStudentGradeDto {
     @NotNull
-    private String firstName;
+    private long studentId;
 
     @NotNull
-    private String lastName;
+    private int grade;
 
-    private StudentDto(Builder builder) {
-        firstName = builder.firstName;
-        lastName = builder.lastName;
+    private ClassStudentGradeDto(Builder builder) {
+        studentId = builder.studentId;
+        grade = builder.grade;
     }
 
-    public static Builder aStudentDto() {
+    public static Builder aClassStudentGradeDto() {
         return new Builder();
     }
 
-    public String getFirstName() {
-        return firstName;
+    public long getStudentId() {
+        return studentId;
     }
 
-    public String getLastName() {
-        return lastName;
+    public int getGrade() {
+        return grade;
     }
 
     @Override
@@ -51,24 +51,24 @@ public class StudentDto {
 
     @JsonPOJOBuilder
     public static final class Builder {
-        private String firstName;
-        private String lastName;
+        private long studentId;
+        private int grade;
 
         private Builder() {
         }
 
-        public Builder withFirstName(String firstName) {
-            this.firstName = firstName;
+        public Builder withStudentId(long studentId) {
+            this.studentId = studentId;
             return this;
         }
 
-        public Builder withLastName(String lastName) {
-            this.lastName = lastName;
+        public Builder withGrade(int grade) {
+            this.grade = grade;
             return this;
         }
 
-        public StudentDto build() {
-            return new StudentDto(this);
+        public ClassStudentGradeDto build() {
+            return new ClassStudentGradeDto(this);
         }
     }
 }

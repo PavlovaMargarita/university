@@ -1,4 +1,4 @@
-package com.jibestream.entity;
+package com.pavlova.entity;
 
 import com.sun.istack.internal.NotNull;
 
@@ -10,6 +10,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
 import java.util.List;
 
 import static org.apache.commons.lang3.builder.EqualsBuilder.reflectionEquals;
@@ -17,35 +18,29 @@ import static org.apache.commons.lang3.builder.HashCodeBuilder.reflectionHashCod
 import static org.apache.commons.lang3.builder.ToStringBuilder.reflectionToString;
 
 @Entity
-@Table(name = "student")
-public class StudentEntity {
+@Table(name = "university_class")
+public class UniversityClassEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "first_name")
+    @Column(name = "name")
     @NotNull
-    private String firstName;
+    private String name;
 
-    @Column(name = "last_name")
-    @NotNull
-    private String lastName;
-
-    @OneToMany(mappedBy = "studentEntity", cascade = { CascadeType.ALL}, orphanRemoval=true)
+    @OneToMany(mappedBy = "universityClassEntity", cascade = { CascadeType.ALL}, orphanRemoval=true)
     private List<ClassStudentGradeEntity> classStudentGradeEntityList;
 
-    public StudentEntity() {
-
-    }
-
-    private StudentEntity(Builder builder) {
+    private UniversityClassEntity(Builder builder) {
         id = builder.id;
-        firstName = builder.firstName;
-        lastName = builder.lastName;
+        name = builder.name;
         classStudentGradeEntityList = builder.classStudentGradeEntityList;
     }
 
-    public static Builder aStudentEntity() {
+    public UniversityClassEntity() {
+
+    }
+    public static Builder aUniversityClassEntity() {
         return new Builder();
     }
 
@@ -53,12 +48,8 @@ public class StudentEntity {
         return id;
     }
 
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
+    public String getName() {
+        return name;
     }
 
     public List<ClassStudentGradeEntity> getClassStudentGradeEntityList() {
@@ -82,8 +73,7 @@ public class StudentEntity {
 
     public static final class Builder {
         private Long id;
-        private String firstName;
-        private String lastName;
+        private String name;
         private List<ClassStudentGradeEntity> classStudentGradeEntityList;
 
         private Builder() {
@@ -94,13 +84,8 @@ public class StudentEntity {
             return this;
         }
 
-        public Builder withFirstName(String firstName) {
-            this.firstName = firstName;
-            return this;
-        }
-
-        public Builder withLastName(String lastName) {
-            this.lastName = lastName;
+        public Builder withName(String name) {
+            this.name = name;
             return this;
         }
 
@@ -109,8 +94,8 @@ public class StudentEntity {
             return this;
         }
 
-        public StudentEntity build() {
-            return new StudentEntity(this);
+        public UniversityClassEntity build() {
+            return new UniversityClassEntity(this);
         }
     }
 }

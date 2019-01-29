@@ -1,7 +1,7 @@
-package com.jibestream.service;
+package com.pavlova.service;
 
-import com.jibestream.dto.StudentClassGradeDto;
-import com.jibestream.dto.StudentDto;
+import com.pavlova.dto.StudentClassGradeDto;
+import com.pavlova.dto.StudentDto;
 
 import java.util.List;
 

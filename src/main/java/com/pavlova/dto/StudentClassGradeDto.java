@@ -1,33 +1,27 @@
-package com.jibestream.dto;
+package com.pavlova.dto;
 
-import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
-import com.fasterxml.jackson.databind.annotation.JsonPOJOBuilder;
-
-import javax.validation.constraints.NotNull;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
 import static org.apache.commons.lang3.builder.EqualsBuilder.reflectionEquals;
 import static org.apache.commons.lang3.builder.HashCodeBuilder.reflectionHashCode;
 import static org.apache.commons.lang3.builder.ToStringBuilder.reflectionToString;
 
-@JsonDeserialize(builder = ClassStudentGradeDto.Builder.class)
-public class ClassStudentGradeDto {
-    @NotNull
-    private long studentId;
-
-    @NotNull
+@JsonSerialize
+public class StudentClassGradeDto {
+    private String className;
     private int grade;
 
-    private ClassStudentGradeDto(Builder builder) {
-        studentId = builder.studentId;
+    private StudentClassGradeDto(Builder builder) {
+        className = builder.className;
         grade = builder.grade;
     }
 
-    public static Builder aClassStudentGradeDto() {
+    public static Builder aStudentClassGradeDto() {
         return new Builder();
     }
 
-    public long getStudentId() {
-        return studentId;
+    public String getClassName() {
+        return className;
     }
 
     public int getGrade() {
@@ -49,16 +43,15 @@ public class ClassStudentGradeDto {
         return reflectionToString(this);
     }
 
-    @JsonPOJOBuilder
     public static final class Builder {
-        private long studentId;
+        private String className;
         private int grade;
 
         private Builder() {
         }
 
-        public Builder withStudentId(long studentId) {
-            this.studentId = studentId;
+        public Builder withClassName(String className) {
+            this.className = className;
             return this;
         }
 
@@ -67,8 +60,8 @@ public class ClassStudentGradeDto {
             return this;
         }
 
-        public ClassStudentGradeDto build() {
-            return new ClassStudentGradeDto(this);
+        public StudentClassGradeDto build() {
+            return new StudentClassGradeDto(this);
         }
     }
 }
